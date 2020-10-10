@@ -5,12 +5,12 @@ public class LinkedListMain {
 
 		LinkedList<Integer> linkedList = new LinkedList<Integer>();
 
-		// calls add first method to add element in front of the linked-list
-		linkedList.addFirst(70);
-		linkedList.addFirst(30);
-		linkedList.addFirst(56);
+		// calls add last method to add element in the end of the linked-list
+		linkedList.addLast(56);
+		linkedList.addLast(30);
+		linkedList.addLast(70);
 
-		// calls the method to list
+		// calls the method to print list
 		linkedList.printList();
 	}
 }
