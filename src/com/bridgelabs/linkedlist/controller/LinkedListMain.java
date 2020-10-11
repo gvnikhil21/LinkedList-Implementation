@@ -5,18 +5,20 @@ public class LinkedListMain {
 
 		MyLinkedList<Integer> linkedList = new MyLinkedList<Integer>();
 
-		// calls add method to add element in the specified position of the linked-list
+		// calls add method to add element in the linked-list
 		linkedList.add(56);
 		linkedList.add(70);
 		linkedList.add(1, 30);
 		linkedList.add(linkedList.search(30), new Node<Integer>(40));
 
-		// searches for given element in linked-list
-		Node<Integer> node = linkedList.search(30);
-		if (node != null)
-			System.out.println("Element is present in linked list");
-		else
-			System.out.println("Element is not present in linked list");
+		// prints linked-list and it's size
+		System.out.println("Size: " + linkedList.size());
+		linkedList.printList();
+
+		// removes element from linked-list when given node
+		linkedList.remove(linkedList.search(40));
+
+		System.out.println("Size: " + linkedList.size());
 		linkedList.printList();
 	}
 }
