@@ -9,8 +9,13 @@ public class LinkedListMain {
 		linkedList.add(56);
 		linkedList.add(70);
 		linkedList.add(1, 30);
-		linkedList.printList();
-		linkedList.removeLast();
+
+		// searches for given element in linked-list
+		boolean isPresent = linkedList.search(30);
+		if (isPresent)
+			System.out.println("Element is present in linked list");
+		else
+			System.out.println("Element is not present in linked list");
 		linkedList.printList();
 	}
 }

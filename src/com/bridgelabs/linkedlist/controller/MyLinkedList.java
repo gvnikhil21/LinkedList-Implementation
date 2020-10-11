@@ -62,10 +62,21 @@ public class MyLinkedList<E> {
 		if (size == 0)
 			throw new NullPointerException("You are trying to remove from empty list!");
 		Node<E> curr = head;
-		while (curr.next.next != null)
+		while (curr.next != null && curr.next.next != null)
 			curr = curr.next;
 		curr.next = null;
 		size--;
+	}
+
+	// searches for a element in linked list
+	public boolean search(E data) {
+		Node<E> curr = head;
+		while (curr != null) {
+			if (curr.data == data)
+				return true;
+			curr = curr.next;
+		}
+		return false;
 	}
 
 	// returns size of the linked list
