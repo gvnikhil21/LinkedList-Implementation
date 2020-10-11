@@ -3,12 +3,12 @@ package com.bridgelabs.linkedlist.controller;
 public class LinkedListMain {
 	public static <E> void main(String[] args) {
 
-		LinkedList<Integer> linkedList = new LinkedList<Integer>();
+		MyLinkedList<Integer> linkedList = new MyLinkedList<Integer>();
 
-		// calls add last method to add element in the end of the linked-list
-		linkedList.addLast(56);
-		linkedList.addLast(30);
-		linkedList.addLast(70);
+		// calls add method to add element in the specified position of the linked-list
+		linkedList.add(56);
+		linkedList.add(70);
+		linkedList.add(1, 30);
 
 		// calls the method to print list
 		linkedList.printList();
