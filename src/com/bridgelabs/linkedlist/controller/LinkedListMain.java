@@ -10,9 +10,7 @@ public class LinkedListMain {
 		linkedList.add(70);
 		linkedList.add(1, 30);
 		linkedList.printList();
-		linkedList.removeFirst();
-
+		linkedList.removeLast();
 		linkedList.printList();
-
 	}
 }

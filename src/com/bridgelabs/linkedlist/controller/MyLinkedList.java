@@ -57,6 +57,17 @@ public class MyLinkedList<E> {
 		size--;
 	}
 
+	// removes last element from the linked-list
+	public void removeLast() {
+		if (size == 0)
+			throw new NullPointerException("You are trying to remove from empty list!");
+		Node<E> curr = head;
+		while (curr.next.next != null)
+			curr = curr.next;
+		curr.next = null;
+		size--;
+	}
+
 	// returns size of the linked list
 	public int size() {
 		return size;
