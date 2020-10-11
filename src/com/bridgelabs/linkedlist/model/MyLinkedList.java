@@ -1,33 +1,70 @@
-package com.bridgelabs.linkedlist.controller;
+package com.bridgelabs.linkedlist.model;
 
 import java.util.NoSuchElementException;
 
-public class MySortedLinkedList<E extends Comparable<E>> {
+import com.bridgelabs.linkedlist.provider.ILinkedList;
+
+public class MyLinkedList<E> implements ILinkedList<E> {
 	private Node<E> head;
 	private int size;
 
 	// creates an empty list
-	public MySortedLinkedList() {
+	public MyLinkedList() {
 	}
 
-	// adds element in a sorted order
-	public void add(E data) {
+	// adds data to front of linked list
+	public void addFirst(E data) {
 		Node<E> temp = new Node<E>(data);
-		if (head == null || (head.data.compareTo(temp.data)) > 0) {
-			temp.next = head;
+		temp.next = head;
+		head = temp;
+		size++;
+	}
+
+	// adds data to end of linked list
+	public void addLast(E data) {
+		Node<E> temp = new Node<E>(data);
+		if (head == null) {
 			head = temp;
 			size++;
 			return;
 		}
 		Node<E> curr = head;
-		while (curr.next != null && curr.next.data.compareTo(temp.data) <= 0)
+		while (curr.next != null)
+			curr = curr.next;
+		curr.next = temp;
+		size++;
+	}
+
+	// add method adds data to the end
+	public void add(E data) {
+		addLast(data);
+	}
+
+	// overloading add method to add data at specified position
+	public void add(int position, E data) {
+		checkIndexOutOFBoundsException(position);
+		if (position == 0) {
+			addFirst(data);
+			return;
+		}
+		Node<E> temp = new Node<E>(data);
+		Node<E> curr = head;
+		for (int index = 0; index <= position - 2; index++)
 			curr = curr.next;
 		temp.next = curr.next;
 		curr.next = temp;
 		size++;
 	}
 
-	// removes an element from the front of linked list
+	// overloading add method to add data after specified node
+	public void add(Node<E> node, Node<E> nodeToAdd) {
+		checkNullPointerException(node);
+		nodeToAdd.next = node.next;
+		node.next = nodeToAdd;
+		size++;
+	}
+
+	// removes first element from the linked-list
 	public void remove() {
 		checkNoSuchElementException();
 		head = head.next;
@@ -55,6 +92,7 @@ public class MySortedLinkedList<E extends Comparable<E>> {
 		size--;
 	}
 
+	// removes last element from the linked-list
 	public void removeLast() {
 		checkNoSuchElementException();
 		Node<E> curr = head;
@@ -113,7 +151,7 @@ public class MySortedLinkedList<E extends Comparable<E>> {
 		return -1;
 	}
 
-	// returns size of the sorted linked-list
+	// returns size of the linked list
 	public int size() {
 		return size;
 	}
@@ -123,7 +161,7 @@ public class MySortedLinkedList<E extends Comparable<E>> {
 		return size == 0 ? true : false;
 	}
 
-	// prints the linked list
+	// prints linked list
 	public void printList() {
 		Node<E> temp = head;
 		while (temp != null) {

@@ -1,9 +1,11 @@
-package com.bridgelabs.linkedlist.controller;
+package com.bridgelabs.linkedlist.tester;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+
+import com.bridgelabs.linkedlist.model.*;
 
 public class MyLinkedListTest {
 

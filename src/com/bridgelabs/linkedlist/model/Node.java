@@ -1,8 +1,8 @@
-package com.bridgelabs.linkedlist.controller;
+package com.bridgelabs.linkedlist.model;
 
 public class Node<E> {
-	E data;
-	Node<E> next;
+	public E data;
+	public Node<E> next;
 
 	// constructor
 	public Node(E data) {
