@@ -9,8 +9,10 @@ public class LinkedListMain {
 		linkedList.add(56);
 		linkedList.add(70);
 		linkedList.add(1, 30);
-
-		// calls the method to print list
 		linkedList.printList();
+		linkedList.removeFirst();
+
+		linkedList.printList();
+
 	}
 }

@@ -33,7 +33,7 @@ public class MyLinkedList<E> {
 	}
 
 	// overloading add method to add data at specified position
-	public void add(int position, E data) throws IndexOutOfBoundsException {
+	public void add(int position, E data) {
 		if (position < 0 || position > size)
 			throw new IndexOutOfBoundsException("Index: " + position + " Size: " + size);
 		if (position == 0) {
@@ -47,6 +47,14 @@ public class MyLinkedList<E> {
 		temp.next = curr.next;
 		curr.next = temp;
 		size++;
+	}
+
+	// removes first element from the linked-list
+	public void removeFirst() {
+		if (size == 0)
+			throw new NullPointerException("You are trying to remove from empty list!");
+		head = head.next;
+		size--;
 	}
 
 	// returns size of the linked list
@@ -63,5 +71,6 @@ public class MyLinkedList<E> {
 				System.out.print("->");
 			temp = temp.next;
 		}
+		System.out.println();
 	}
 }
