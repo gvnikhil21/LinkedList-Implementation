@@ -2,67 +2,32 @@ package com.bridgelabs.linkedlist.controller;
 
 import java.util.NoSuchElementException;
 
-public class MyLinkedList<E> {
+public class MySortedLinkedList<E extends Comparable<E>> {
 	private Node<E> head;
 	private int size;
 
 	// creates an empty list
-	public MyLinkedList() {
+	public MySortedLinkedList() {
 	}
 
-	// adds data to front of linked list
-	public void addFirst(E data) {
+	// adds element in a sorted order
+	public void add(E data) {
 		Node<E> temp = new Node<E>(data);
-		temp.next = head;
-		head = temp;
-		size++;
-	}
-
-	// adds data to end of linked list
-	public void addLast(E data) {
-		Node<E> temp = new Node<E>(data);
-		if (head == null) {
+		if (head == null || (head.data.compareTo(temp.data)) > 0) {
+			temp.next = head;
 			head = temp;
 			size++;
 			return;
 		}
 		Node<E> curr = head;
-		while (curr.next != null)
-			curr = curr.next;
-		curr.next = temp;
-		size++;
-	}
-
-	// add method adds data to the end
-	public void add(E data) {
-		addLast(data);
-	}
-
-	// overloading add method to add data at specified position
-	public void add(int position, E data) {
-		checkIndexOutOFBoundsException(position);
-		if (position == 0) {
-			addFirst(data);
-			return;
-		}
-		Node<E> temp = new Node<E>(data);
-		Node<E> curr = head;
-		for (int index = 0; index <= position - 2; index++)
+		while (curr.next != null && curr.next.data.compareTo(temp.data) <= 0)
 			curr = curr.next;
 		temp.next = curr.next;
 		curr.next = temp;
 		size++;
 	}
 
-	// overloading add method to add data after specified node
-	public void add(Node<E> node, Node<E> nodeToAdd) {
-		checkNullPointerException(node);
-		nodeToAdd.next = node.next;
-		node.next = nodeToAdd;
-		size++;
-	}
-
-	// removes first element from the linked-list
+	// removes an element from the front of linked list
 	public void remove() {
 		checkNoSuchElementException();
 		head = head.next;
@@ -90,7 +55,6 @@ public class MyLinkedList<E> {
 		size--;
 	}
 
-	// removes last element from the linked-list
 	public void removeLast() {
 		checkNoSuchElementException();
 		Node<E> curr = head;
@@ -149,7 +113,7 @@ public class MyLinkedList<E> {
 		return -1;
 	}
 
-	// returns size of the linked list
+	// returns size of the sorted linked-list
 	public int size() {
 		return size;
 	}
@@ -159,7 +123,7 @@ public class MyLinkedList<E> {
 		return size == 0 ? true : false;
 	}
 
-	// prints linked list
+	// prints the linked list
 	public void printList() {
 		Node<E> temp = head;
 		while (temp != null) {
