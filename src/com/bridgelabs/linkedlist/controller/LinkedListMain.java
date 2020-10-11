@@ -9,10 +9,11 @@ public class LinkedListMain {
 		linkedList.add(56);
 		linkedList.add(70);
 		linkedList.add(1, 30);
+		linkedList.add(linkedList.search(30), new Node<Integer>(40));
 
 		// searches for given element in linked-list
-		boolean isPresent = linkedList.search(30);
-		if (isPresent)
+		Node<Integer> node = linkedList.search(30);
+		if (node != null)
 			System.out.println("Element is present in linked list");
 		else
 			System.out.println("Element is not present in linked list");

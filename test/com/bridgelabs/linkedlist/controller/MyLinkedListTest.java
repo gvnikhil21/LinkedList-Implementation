@@ -1,19 +1,31 @@
 package com.bridgelabs.linkedlist.controller;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 public class MyLinkedListTest {
 
-	MyLinkedList<Integer> linkedList = new MyLinkedList<Integer>();
-
 	@Test
 	public void givenInteger_WhenPresentInLinkedList_ShouldReturnTrue() {
+		MyLinkedList<Integer> linkedList = new MyLinkedList<Integer>();
 		linkedList.add(56);
 		linkedList.add(70);
 		linkedList.add(1, 30);
-		assertTrue(linkedList.search(30));
+		assertEquals(Integer.valueOf(30), linkedList.search(30).data);
+	}
+
+	@Test
+	public void givenInteger_WhenAddedAfterAnInteger_ShouldAddAfterThatInteger() {
+		MyLinkedList<Integer> linkedList = new MyLinkedList<Integer>();
+		linkedList.add(56);
+		linkedList.add(30);
+		linkedList.add(70);
+		linkedList.add(linkedList.search(30), new Node<Integer>(40));
+
+		boolean result = linkedList.search(30).next.data == 40;
+		assertTrue(result);
 	}
 
 }

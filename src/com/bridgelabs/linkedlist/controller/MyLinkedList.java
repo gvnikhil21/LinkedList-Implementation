@@ -1,5 +1,7 @@
 package com.bridgelabs.linkedlist.controller;
 
+import java.util.NoSuchElementException;
+
 public class MyLinkedList<E> {
 	private Node<E> head;
 	private int size;
@@ -49,18 +51,22 @@ public class MyLinkedList<E> {
 		size++;
 	}
 
+	// overloading add method to add data after specified node
+	public void add(Node<E> node, Node<E> nodeToAdd) {
+		nodeToAdd.next = node.next;
+		node.next = nodeToAdd;
+	}
+
 	// removes first element from the linked-list
-	public void removeFirst() {
-		if (size == 0)
-			throw new NullPointerException("You are trying to remove from empty list!");
+	public void remove() {
+		checkNoSuchElementException();
 		head = head.next;
 		size--;
 	}
 
 	// removes last element from the linked-list
 	public void removeLast() {
-		if (size == 0)
-			throw new NullPointerException("You are trying to remove from empty list!");
+		checkNoSuchElementException();
 		Node<E> curr = head;
 		while (curr.next != null && curr.next.next != null)
 			curr = curr.next;
@@ -68,15 +74,21 @@ public class MyLinkedList<E> {
 		size--;
 	}
 
+	// checks for element exists or not
+	public void checkNoSuchElementException() {
+		if (size == 0)
+			throw new NoSuchElementException("You are trying to remove from empty list!");
+	}
+
 	// searches for a element in linked list
-	public boolean search(E data) {
+	public Node<E> search(E data) {
 		Node<E> curr = head;
 		while (curr != null) {
 			if (curr.data == data)
-				return true;
+				return curr;
 			curr = curr.next;
 		}
-		return false;
+		return null;
 	}
 
 	// returns size of the linked list
