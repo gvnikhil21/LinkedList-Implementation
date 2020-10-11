@@ -5,13 +5,13 @@ import com.bridgelabs.linkedlist.model.Node;
 public interface ILinkedList<E> {
 	void add(E data);
 
-	void remove();
+	E remove();
 
-	void remove(int position);
+	E remove(int position);
 
-	void remove(Node<E> node);
+	E remove(Node<E> node);
 
-	void removeLast();
+	E removeLast();
 
 	void checkNullPointerException(Node<E> node);
 

@@ -65,14 +65,16 @@ public class MyLinkedList<E> implements ILinkedList<E> {
 	}
 
 	// removes first element from the linked-list
-	public void remove() {
+	public E remove() {
 		checkNoSuchElementException();
+		Node<E> temp = head;
 		head = head.next;
 		size--;
+		return temp.data;
 	}
 
 	// overloading remove method to remove element at specific position
-	public void remove(int position) {
+	public E remove(int position) {
 		checkIndexOutOFBoundsException(position);
 		Node<E> curr = head;
 		for (int index = 0; index <= position - 2; index++)
@@ -80,26 +82,30 @@ public class MyLinkedList<E> implements ILinkedList<E> {
 		Node<E> temp = curr.next;
 		curr.next = temp.next;
 		size--;
+		return temp.data;
 	}
 
 	// overloading remove method to remove element from linked-list when given node
-	public void remove(Node<E> node) {
+	public E remove(Node<E> node) {
 		checkNullPointerException(node);
 		Node<E> curr = head;
 		while (curr.next != node && curr.next != null)
 			curr = curr.next;
 		curr.next = node.next;
 		size--;
+		return node.data;
 	}
 
 	// removes last element from the linked-list
-	public void removeLast() {
+	public E removeLast() {
 		checkNoSuchElementException();
 		Node<E> curr = head;
 		while (curr.next != null && curr.next.next != null)
 			curr = curr.next;
+		Node<E> temp = curr.next;
 		curr.next = null;
 		size--;
+		return temp.data;
 	}
 
 	// checks for null
